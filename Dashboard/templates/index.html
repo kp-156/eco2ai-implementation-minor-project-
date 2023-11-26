@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco2AI Dashboard</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <h1>Hello, Eco2AI Dashboard!</h1>
+	<!-- Inside <body> tag -->
+	<div style="width: 80%; margin: auto;">
+		<canvas id="myChart"></canvas>
+	</div>
+
+	<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Label 1', 'Label 2', 'Label 3'],  // Your labels go here
+                datasets: [{
+                    label: 'My Dataset',
+                    data: [10, 20, 30],  // Your data values go here
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>
