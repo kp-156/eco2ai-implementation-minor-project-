@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Dashboard</title>
+</head>
+<body>
+    <h1>ML Dashboard</h1>
+    
+    <form method="POST" action="/train_and_visualize">
+        <label for="selected_model">Select Model:</label>
+        <select name="selected_model" id="selected_model">
+            <option value="Malevich">Malevich</option>
+            <option value="Kandinsky">Kandinsky</option>
+            <option value="Sign_Language_Recognition">Sign Language Recognition</option>
+        </select>
+        <input type="submit" value="Train and Visualize">
+    </form>
+    
+    {% if chart_data %}
+        <img src="{{ chart_data }}" alt="Training Chart">
+    {% endif %}
+</body>
+</html>
+
