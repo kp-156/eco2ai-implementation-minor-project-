@@ -1,0 +1,6 @@
+eco2ai
+pandas
+matplotlib
+scikit-learn
+tensorflow
+keras
