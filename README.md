@@ -24,3 +24,13 @@ Browse to the root directory of this repository and run the following command to
 ```
 pip install -r requirements.txt
 ```
+
+### Running the code
+
+Browse to the root directory of this repository and run the following command to run the code:
+```
+python main.py
+```
+
+To run different models, add a model run script in the models folder, and change the model import in the main.py file.
+To run variations of the same model, change the parameters in the main.py file.
