@@ -20,7 +20,7 @@ Install eco2ai package using pip as follows:
 pip install -e .
 ```
 
-Install the other dependencies using pip as follows:
+Browse to the root directory of this repository and run the following command to install other dependencies as follows:
 ```
 pip install -r requirements.txt
 ```
