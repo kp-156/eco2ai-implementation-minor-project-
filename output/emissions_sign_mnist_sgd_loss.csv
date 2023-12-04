@@ -1,0 +1,2 @@
+id,project_name,experiment_description,epoch,start_time,duration(s),power_consumption(kWh),CO2_emissions(kg),CPU_name,GPU_name,OS,region/country,cost
+c0d60df1-b178-4ef2-9e9c-a18c3449b0d3,ECO2AI Usage Example,training_sign_language_mnist_model,N/A,2023-12-04 09:02:53,429.194463968277,0.0029832049236377086,0.001866212453694812,"Intel(R) Core(TM) i7-10875H CPU @ 2.30GHz/1 device(s), TDP:45.0",Quadro T1000 with Max-Q Design 1 device(s),Windows,IN/Delhi,0

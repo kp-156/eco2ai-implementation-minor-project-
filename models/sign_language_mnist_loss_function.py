@@ -46,21 +46,25 @@ class SignDataSet(Dataset):
 class SignLabelModel(nn.Module):
     def __init__(self, num_classes):
         super(SignLabelModel, self).__init__()
-        self.hidden1 = nn.Linear(32 * 7 * 7, 128)
-        self.hidden2 = nn.Linear(256, 128)
-        self.output = nn.Linear(128, 7)
-        self.softmax = nn.Softmax(dim=1)
-        self.activation = nn.ReLU()
+        self.features = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            nn.Conv2d(16, 32, kernel_size=3, stride=1, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        self.classifier = nn.Sequential(
+            nn.Linear(32 * 7 * 7, 128),
+            nn.ReLU(inplace=True),
+            nn.Linear(128, num_classes)
+        )
 
     def forward(self, x):
-        x = x.view(x.size(0), -1)  # Flatten the input properly
-        x = self.hidden1(x)
-        x = self.activation(x)
-        x = self.hidden2(x)
-        x = self.activation(x)
-        x = self.output(x)
-        output = self.softmax(x)
-        return output
+        x = self.features(x)
+        x = x.view(x.size(0), -1)
+        x = self.classifier(x)
+        return x
 
 
 def train_model():
@@ -114,7 +118,7 @@ def train_model():
 
     # Define the loss function and optimizer
     num_epochs = 20
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.HingeEmbeddingLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
 
     # Train the model
@@ -125,10 +129,12 @@ def train_model():
             images = images.to(device)
             labels = labels.to(device)
 
+            # Forward pass
+            outputs = model(images.to(device))
+            loss = criterion(outputs, labels)
+
+            # Backward and optimize
             optimizer.zero_grad()
-            images = images.view(images.shape[0], -1)
-            pred = model(images)
-            loss = criterion(pred, images)
             loss.backward()
             optimizer.step()
 
